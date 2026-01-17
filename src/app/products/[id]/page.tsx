@@ -11,6 +11,12 @@ interface ProductPageProps {
     }>;
 }
 
+export async function generateStaticParams() {
+    return products.map((product) => ({
+        id: product.id,
+    }));
+}
+
 export default async function ProductPage({ params }: ProductPageProps) {
     const { id } = await params;
     const product = products.find((p) => p.id === id);

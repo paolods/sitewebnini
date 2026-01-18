@@ -2,62 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-  
-  --primary: #1a1a1a;
-  --primary-foreground: #ffffff;
-  
-  --secondary: #f4f4f5;
-  --secondary-foreground: #18181b;
-  
-  --accent: #d4af37; /* Gold accent */
-  --accent-foreground: #ffffff;
-  
-  --muted: #f4f4f5;
-  --muted-foreground: #71717a;
-  
-  --card: #ffffff;
-  --card-foreground: #09090b;
-  
-  --border: #e4e4e7;
-  --input: #e4e4e7;
-  
-  --radius: 0.5rem;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
+    --background: #ffffff;
+    --foreground: #1a1a1a;
+
+    --primary: #1a1a1a;
+    --primary-foreground: #ffffff;
+
+    --secondary: #f4f4f5;
+    --secondary-foreground: #18181b;
+
+    --accent: #5F9EA0;
+    /* Teal/CadetBlue like the mockup */
+    --accent-foreground: #ffffff;
+
+    --muted: #f4f4f5;
+    --muted-foreground: #6b7280;
+
+    --card: #ffffff;
+    --card-foreground: #1a1a1a;
+
+    --border: #e2e8f0;
+    --input: #e2e8f0;
+
+    --radius: 0.3rem;
+  }
+
+  .dark {
     --background: #0a0a0a;
-    --foreground: #ededed;
-    
-    --primary: #ededed;
-    --primary-foreground: #0a0a0a;
-    
-    --secondary: #27272a;
-    --secondary-foreground: #fafafa;
-    
-    --accent: #ffd700;
-    --accent-foreground: #000000;
-    
-    --muted: #27272a;
-    --muted-foreground: #a1a1aa;
-    
-    --card: #0a0a0a;
-    --card-foreground: #ededed;
-    
-    --border: #27272a;
-    --input: #27272a;
+    --foreground: #f8fafc;
+
+    --primary: #f8fafc;
+    --primary-foreground: #0f172a;
+
+    --accent: #66b2b2;
+    --accent-foreground: #ffffff;
+
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
+
+    --border: #1e293b;
+    --input: #1e293b;
   }
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-serif {
+  font-family: var(--font-cormorant), serif;
 }
 
 @layer utilities {

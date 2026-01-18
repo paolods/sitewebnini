@@ -14,26 +14,26 @@ export default function ProductGallery({ mainImage, additionalImages, productNam
     const [selectedImage, setSelectedImage] = useState(0);
 
     return (
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-4">
             {/* Main Image Display */}
-            <div className="relative mx-auto aspect-square w-full max-w-[500px] overflow-hidden rounded-full bg-muted shadow-lg">
+            <div className="relative aspect-square w-full overflow-hidden rounded-card border border-border bg-[var(--off-white)] shadow-soft">
                 <Image
                     src={allImages[selectedImage]}
                     alt={productName}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-opacity duration-300"
                     priority
                 />
             </div>
 
             {/* Thumbnail Gallery */}
             {additionalImages.length > 0 && (
-                <div className="flex justify-center gap-4 py-2">
+                <div className="flex flex-wrap gap-2">
                     {allImages.map((img, idx) => (
                         <button
                             key={idx}
                             onClick={() => setSelectedImage(idx)}
-                            className={`relative h-20 w-20 overflow-hidden rounded-lg border-2 transition-all ${selectedImage === idx ? "border-teal-600 ring-2 ring-teal-600/20" : "border-transparent hover:border-teal-200"
+                            className={`relative h-20 w-20 overflow-hidden rounded-lg border-2 transition-all ${selectedImage === idx ? "border-[var(--price-red)] ring-2 ring-[var(--price-red)]/10" : "border-transparent hover:border-gray-300"
                                 }`}
                         >
                             <Image

@@ -5,102 +5,124 @@ import { formatPrice } from "@/lib/utils";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
-      {/* Hero Section with Spiritual Message */}
-      <section className="container mx-auto px-4 py-12 text-center">
-        <h1 className="mb-4 text-3xl font-serif text-foreground">
-          Bienvenue dans mon univers ✨
-        </h1>
-        <p className="mx-auto max-w-3xl text-lg leading-relaxed text-muted-foreground">
-          Je crée des designs porteurs de sens — inspirés par la Lumière, la Paix intérieure et la beauté de l'Âme.
-        </p>
-        <p className="mx-auto mt-2 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-          Chaque création est une invitation à se reconnecter à l'Esprit, à la Vie et à l'Amour.
-        </p>
-        <p className="mx-auto mt-2 max-w-2xl text-base italic text-muted-foreground">
-          Animae, c'est une invitation à porter ton essence et à faire vibrer ton énergie 🌿
-        </p>
-      </section>
+    <div className="min-h-screen bg-background pb-20">
+      {/* Breadcrumbs */}
+      <div className="container mx-auto px-4 py-6 text-sm text-muted-foreground">
+        <nav className="flex items-center gap-2">
+          <Link href="/" className="hover:text-foreground">Accueil</Link>
+          <span>/</span>
+          <span className="text-foreground font-medium uppercase font-serif">Béatshirts</span>
+        </nav>
+      </div>
 
-      {/* Products Grid */}
-      <section className="container mx-auto px-4 py-8">
-        <div className="mb-8 flex items-center justify-between">
-          <h2 className="sr-only">Nos Béatshirts</h2>
-          <div className="ml-auto">
-            <label htmlFor="sort" className="mr-2 text-sm text-muted-foreground">
-              TRIER PAR
-            </label>
-            <select
-              id="sort"
-              className="rounded border border-input bg-background px-3 py-1 text-sm"
-            >
-              <option>Par défaut</option>
-              <option>Prix croissant</option>
-              <option>Prix décroissant</option>
-              <option>Nom A-Z</option>
-            </select>
+      <div className="container mx-auto px-4 flex flex-col md:flex-row gap-8">
+        {/* Sidebar reminder */}
+        <aside className="hidden md:block w-64 shrink-0">
+          <div className="bg-[var(--off-white)] p-6 rounded-card border border-border shadow-soft">
+            <h3 className="font-serif font-bold text-xl uppercase mb-6 flex items-center gap-2">
+              Menu
+            </h3>
+            <ul className="space-y-4 text-sm font-medium">
+              <li>
+                <Link href="/" className="text-[var(--price-red)] font-bold flex items-center justify-between">
+                  <span>Accueil</span>
+                  <span className="text-xs">➔</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:text-[var(--price-red)] transition-colors flex items-center justify-between">
+                  <span>Béatshirts Classiques</span>
+                  <span className="text-muted-foreground">+</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:text-[var(--price-red)] transition-colors flex items-center justify-between">
+                  <span>Nouveautés</span>
+                  <span className="text-muted-foreground">+</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:text-[var(--price-red)] transition-colors flex items-center justify-between">
+                  <span>Accessoires</span>
+                  <span className="text-muted-foreground">+</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:text-[var(--price-red)] transition-colors flex items-center justify-between">
+                  <span>E-Cartes</span>
+                  <span className="text-muted-foreground">+</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className="mt-8 p-6 rounded-card border-2 border-dashed border-[var(--soft-pink)] bg-[var(--soft-pink)]/20">
+            <h4 className="font-serif font-bold text-[var(--price-red)] mb-2">Besoin d'aide ?</h4>
+            <p className="text-xs text-muted-foreground italic mb-4">Une question sur nos produits ou votre commande ?</p>
+            <Link href="/contact" className="text-xs font-bold uppercase underline hover:text-[var(--price-red)]">Contactez-nous</Link>
+          </div>
+        </aside>
+
+        {/* Main Content */}
+        <div className="flex-1">
+          <div className="mb-10 text-center md:text-left">
+            <h1 className="text-4xl font-serif font-bold text-foreground uppercase tracking-tight mb-2">Nos Béatshirts</h1>
+            <div className="h-1 w-20 bg-[var(--price-red)] mx-auto md:mx-0"></div>
+          </div>
+
+          <div className="mb-8 flex items-center justify-between bg-[var(--off-white)] p-4 rounded-lg">
+            <p className="text-sm text-muted-foreground">Il y a {products.length} produits.</p>
+            <div className="flex items-center gap-4">
+              <label htmlFor="sort" className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                Trier par :
+              </label>
+              <select
+                id="sort"
+                className="rounded border border-border bg-white px-3 py-1.5 text-xs shadow-sm focus:outline-none"
+              >
+                <option>Pertinence</option>
+                <option>Prix, croissant</option>
+                <option>Prix, décroissant</option>
+                <option>Nom, A à Z</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {products.map((product) => (
+              <Link
+                key={product.id}
+                href={`/products/${product.id}`}
+                className="group flex flex-col bg-white rounded-card border border-border shadow-soft overflow-hidden transition-all hover:translate-y-[-8px] hover:shadow-xl"
+              >
+                {/* Product Image Area */}
+                <div className="relative aspect-square w-full overflow-hidden bg-[var(--off-white)]">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  {/* Quick badges could go here */}
+                </div>
+
+                {/* Info Container - White Background */}
+                <div className="p-4 flex flex-col items-center text-center bg-white">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-1">
+                    Béatshirts
+                  </span>
+                  <h3 className="text-sm font-serif font-bold text-foreground line-clamp-2 mb-2 min-h-[40px]">
+                    {product.name}
+                  </h3>
+                  <p className="text-lg font-bold text-[var(--price-red)]">
+                    {formatPrice(product.price)}
+                  </p>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
-
-        <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
-          {products.map((product) => (
-            <Link
-              key={product.id}
-              href={`/products/${product.id}`}
-              className="group flex flex-col items-center text-center transition-all hover:translate-y-[-4px]"
-            >
-              {/* Circular Product Image */}
-              <div className="relative mb-6 aspect-square w-full max-w-[220px] overflow-hidden rounded-full transition-shadow group-hover:shadow-md">
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  fill
-                  className="object-cover transition-transform group-hover:scale-105"
-                />
-              </div>
-
-              {/* Product Info */}
-              <div className="flex flex-col items-center space-y-2">
-                <p className="max-w-[180px] text-xs font-serif italic leading-tight text-muted-foreground">
-                  « {product.quote.replace(/[«»]/g, '').trim()} »
-                </p>
-                <h3 className="text-sm font-serif text-foreground">
-                  {product.name}
-                </h3>
-                <p className="text-lg font-bold text-[var(--price-red)]">
-                  {formatPrice(product.price)}
-                </p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Footer Navigation */}
-      <section className="border-t border-border py-8">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-center gap-12 text-sm text-muted-foreground">
-            <Link href="/account" className="flex flex-col items-center gap-2 hover:text-foreground">
-              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-              <span>Mon Compte</span>
-            </Link>
-            <Link href="/orders" className="flex flex-col items-center gap-2 hover:text-foreground">
-              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-              </svg>
-              <span>Suivi de commande</span>
-            </Link>
-            <Link href="/cart" className="flex flex-col items-center gap-2 hover:text-foreground">
-              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-              <span>Panier</span>
-            </Link>
-          </div>
-        </div>
-      </section>
+      </div>
     </div>
   );
 }

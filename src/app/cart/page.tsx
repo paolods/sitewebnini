@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Trash2, Plus, Minus, ArrowLeft, ShoppingBag } from "lucide-react";
+import { Trash2, Plus, Minus, ArrowLeft, ShoppingBag, Zap } from "lucide-react";
 import { useCart } from "@/components/CartContext";
 import { formatPrice } from "@/lib/utils";
 
@@ -42,12 +42,20 @@ export default function CartPage() {
             </div>
 
             <div className="container mx-auto px-4">
-                <h1 className="text-4xl font-serif font-bold text-foreground mb-10 flex items-center gap-4">
-                    Votre panier
-                    <span className="text-sm font-sans font-normal text-muted-foreground bg-[var(--off-white)] px-3 py-1 rounded-full">
-                        {cart.length} {cart.length > 1 ? 'articles' : 'article'}
-                    </span>
-                </h1>
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
+                    <h1 className="text-4xl font-serif font-bold text-foreground flex items-center gap-4">
+                        Votre panier
+                        <span className="text-sm font-sans font-normal text-muted-foreground bg-[var(--off-white)] px-3 py-1 rounded-full">
+                            {cart.length} {cart.length > 1 ? 'articles' : 'article'}
+                        </span>
+                    </h1>
+                    <Link
+                        href="/"
+                        className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[var(--price-red)] hover:underline"
+                    >
+                        <ArrowLeft className="h-4 w-4" /> Continuer mes achats
+                    </Link>
+                </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                     {/* Cart Items List */}
@@ -76,15 +84,15 @@ export default function CartPage() {
                                                         />
                                                     </div>
                                                     <div className="flex flex-col justify-center gap-1">
-                                                        <Link href={`/products/${item.id}`} className="font-serif font-bold text-foreground hover:text-[var(--price-red)] transition-colors">
+                                                        <Link href={`/products/${item.id}`} className="font-serif font-bold text-foreground hover:text-[var(--price-red)] transition-colors line-clamp-1">
                                                             {item.name}
                                                         </Link>
-                                                        <p className="text-xs text-muted-foreground uppercase tracking-widest font-bold">
+                                                        <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">
                                                             Taille: <span className="text-foreground">{item.size}</span>
                                                         </p>
                                                         <button
                                                             onClick={() => removeFromCart(item.id, item.size)}
-                                                            className="text-xs text-muted-foreground flex items-center gap-1 mt-2 hover:text-red-600 transition-colors"
+                                                            className="text-[10px] text-muted-foreground flex items-center gap-1 mt-2 hover:text-red-600 transition-colors uppercase font-bold tracking-wider"
                                                         >
                                                             <Trash2 className="h-3 w-3" /> Supprimer
                                                         </button>
@@ -96,7 +104,7 @@ export default function CartPage() {
                                             </td>
                                             <td className="px-6 py-6">
                                                 <div className="flex items-center justify-center">
-                                                    <div className="flex items-center border border-border rounded-lg bg-white">
+                                                    <div className="flex items-center border border-border rounded-lg bg-white shadow-sm">
                                                         <button
                                                             onClick={() => updateQuantity(item.id, item.size, item.quantity - 1)}
                                                             className="px-3 py-1 hover:text-[var(--price-red)] transition-colors disabled:opacity-30"
@@ -114,7 +122,7 @@ export default function CartPage() {
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td className="px-6 py-6 text-right font-bold text-foreground">
+                                            <td className="px-6 py-6 text-right font-bold text-[var(--price-red)]">
                                                 {formatPrice(item.price * item.quantity)}
                                             </td>
                                         </tr>
@@ -123,18 +131,12 @@ export default function CartPage() {
                             </table>
                         </div>
 
-                        <div className="flex justify-between items-center pt-4">
-                            <Link
-                                href="/"
-                                className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-all"
-                            >
-                                <ArrowLeft className="h-4 w-4" /> Continuer mes achats
-                            </Link>
+                        <div className="flex justify-start pt-4">
                             <button
                                 onClick={clearCart}
-                                className="text-sm font-bold uppercase tracking-widest text-muted-foreground hover:text-red-600 transition-all flex items-center gap-2"
+                                className="text-xs font-bold uppercase tracking-widest text-muted-foreground hover:text-red-600 transition-all flex items-center gap-2"
                             >
-                                <Trash2 className="h-4 w-4" /> Vider le panier
+                                <Trash2 className="h-3 w-3" /> Vider mon panier
                             </button>
                         </div>
                     </div>
@@ -147,46 +149,67 @@ export default function CartPage() {
                             </h2>
 
                             <div className="space-y-4 mb-8">
-                                <div className="flex justify-between text-muted-foreground">
+                                <div className="flex justify-between text-sm text-muted-foreground">
                                     <span>Sous-total</span>
                                     <span className="font-bold text-foreground">{formatPrice(cartTotal)}</span>
                                 </div>
-                                <div className="flex justify-between text-muted-foreground">
-                                    <span>Livraison</span>
-                                    <span className="text-green-600 font-bold uppercase text-xs tracking-widest">Gratuit</span>
+                                <div className="flex justify-between text-sm text-muted-foreground">
+                                    <span>Frais de port</span>
+                                    <span className="text-green-600 font-bold uppercase text-[10px] tracking-widest bg-green-50 px-2 py-0.5 rounded">Offerts</span>
                                 </div>
-                                <div className="pt-4 border-t border-border/50 flex justify-between items-center">
-                                    <span className="text-lg font-serif font-bold text-foreground">Total</span>
-                                    <span className="text-2xl font-bold text-[var(--price-red)]">{formatPrice(cartTotal)}</span>
+
+                                {/* Promo Code */}
+                                <div className="pt-4 border-t border-border/50">
+                                    <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-2 block">
+                                        Code Promo
+                                    </label>
+                                    <div className="flex gap-2">
+                                        <input
+                                            type="text"
+                                            placeholder="BEATSHIRTS10"
+                                            className="flex-1 bg-[var(--off-white)] border border-input rounded-md px-3 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-[var(--price-red)]"
+                                        />
+                                        <button className="text-xs font-bold uppercase tracking-wider text-foreground hover:text-[var(--price-red)] transition-colors">
+                                            Appliquer
+                                        </button>
+                                    </div>
                                 </div>
-                                <p className="text-[10px] text-muted-foreground italic text-center">
-                                    Taxes incluses. Frais de port calculés lors du paiement.
-                                </p>
+
+                                <div className="pt-6 border-t border-border/50">
+                                    <div className="flex justify-between items-center mb-1">
+                                        <span className="text-lg font-serif font-bold text-foreground">Total à payer</span>
+                                        <span className="text-3xl font-bold text-[var(--price-red)]">{formatPrice(cartTotal)}</span>
+                                    </div>
+                                    <p className="text-[10px] text-muted-foreground italic text-right">
+                                        Taxes inclues
+                                    </p>
+                                </div>
                             </div>
 
                             <button
                                 onClick={() => {
-                                    if (confirm("Voulez-vous procéder au paiement sécurisé via Stripe/PayPal ? (Ceci est une simulation)")) {
+                                    if (confirm("Voulez-vous procéder au paiement sécurisé ? (Simulation Stripe)")) {
                                         clearCart();
-                                        alert("Paiement réussi ! Merci de votre commande. Vous allez être redirigé vers l'accueil.");
+                                        alert("Félicitations ! Votre commande de Béatshirts est validée. Vous allez recevoir un mail de confirmation.");
                                         window.location.href = "/";
                                     }
                                 }}
-                                className="w-full bg-black text-white py-4 rounded-card font-bold uppercase tracking-widest hover:bg-gray-800 transition-all shadow-soft mb-4 active:scale-95"
+                                className="w-full bg-black text-white py-4 rounded-card font-bold uppercase tracking-widest hover:bg-gray-800 transition-all shadow-soft mb-6 active:scale-95 flex items-center justify-center gap-3"
                             >
-                                Procéder au paiement
+                                <Zap className="h-5 w-5 text-yellow-400 fill-yellow-400" />
+                                Commander
                             </button>
 
                             <div className="space-y-4 pt-6 border-t border-border/50">
-                                <p className="text-xs font-bold uppercase tracking-widest text-center text-muted-foreground mb-4">
-                                    Paiement Sécurisé
-                                </p>
-                                <div className="flex justify-center gap-3 opacity-60">
-                                    <div className="h-8 w-12 bg-gray-100 rounded flex items-center justify-center text-[10px] font-bold">VISA</div>
-                                    <div className="h-8 w-12 bg-gray-100 rounded flex items-center justify-center text-[10px] font-bold">MC</div>
-                                    <div className="h-8 w-12 bg-gray-100 rounded flex items-center justify-center text-[10px] font-bold">PAYPAL</div>
-                                    <div className="h-8 w-12 bg-gray-100 rounded flex items-center justify-center text-[10px] font-bold">AMEX</div>
+                                <div className="flex items-center justify-center gap-4 opacity-40 grayscale hover:grayscale-0 transition-all">
+                                    <div className="h-6 w-10 flex items-center justify-center text-[8px] border border-gray-300 rounded font-bold">VISA</div>
+                                    <div className="h-6 w-10 flex items-center justify-center text-[8px] border border-gray-300 rounded font-bold">MC</div>
+                                    <div className="h-6 w-10 flex items-center justify-center text-[8px] border border-gray-300 rounded font-bold">PP</div>
+                                    <div className="h-6 w-10 flex items-center justify-center text-[8px] border border-gray-300 rounded font-bold">AMEX</div>
                                 </div>
+                                <p className="text-[9px] text-center text-muted-foreground font-medium uppercase tracking-tighter">
+                                    Paiement 100% sécurisé via Stripe & PayPal
+                                </p>
                             </div>
                         </div>
                     </div>

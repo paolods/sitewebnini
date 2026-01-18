@@ -21,13 +21,13 @@ export function Header() {
             <div className="border-b border-border bg-background">
                 <div className="container mx-auto px-4 py-4 flex items-center justify-between gap-4 md:gap-8">
                     {/* Logo */}
-                    <Link href="/" className="shrink-0 transition-transform hover:scale-105">
+                    <Link href="/" className="shrink-0 transition-transform hover:scale-105 active:scale-95">
                         <Image
                             src="/images/logo/1000166046.jpg"
                             alt="Béatshirts Logo"
-                            width={140}
-                            height={70}
-                            className="h-14 w-auto object-contain"
+                            width={160}
+                            height={80}
+                            className="h-12 md:h-16 w-auto object-contain"
                             priority
                         />
                     </Link>
@@ -37,11 +37,11 @@ export function Header() {
                         <input
                             type="text"
                             placeholder="Rechercher un Béatshirt, une collection..."
-                            className="w-full rounded-full border border-input px-6 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--price-red)]/20 focus:border-[var(--price-red)] shadow-sm transition-all"
+                            className="w-full rounded-full border border-input px-6 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--price-red)]/20 focus:border-[var(--price-red)] shadow-sm focus:shadow-md transition-all placeholder:text-muted-foreground/50"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
-                        <button className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-[var(--price-red)] transition-colors">
+                        <button className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-[var(--price-red)] transition-colors group-hover:scale-110 active:scale-90">
                             <Search className="h-5 w-5" />
                         </button>
                     </div>

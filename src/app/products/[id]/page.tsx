@@ -5,6 +5,7 @@ import { products } from "@/data/products";
 import { formatPrice } from "@/lib/utils";
 import { ArrowLeft, ShoppingCart } from "lucide-react";
 import SizeSelector from "@/components/SizeSelector";
+import ProductGallery from "@/components/ProductGallery";
 
 interface ProductPageProps {
     params: Promise<{
@@ -27,42 +28,40 @@ export default async function ProductPage({ params }: ProductPageProps) {
     }
 
     return (
-        <div className="container mx-auto px-4 py-10">
+        <div className="container mx-auto px-4 py-10 text-foreground font-serif">
             <Link
                 href="/"
-                className="mb-8 inline-flex items-center text-sm font-medium text-muted-foreground hover:text-foreground"
+                className="mb-8 inline-flex items-center text-sm font-medium text-muted-foreground hover:text-foreground font-sans"
             >
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Retour au catalogue
             </Link>
 
             <div className="grid gap-10 lg:grid-cols-2 lg:gap-20">
-                {/* Product Image - Circular */}
-                <div className="relative mx-auto aspect-square w-full max-w-[500px] overflow-hidden rounded-full bg-muted shadow-lg">
-                    <Image
-                        src={product.image}
-                        alt={product.name}
-                        fill
-                        className="object-cover"
-                        priority
-                    />
-                </div>
+                {/* Product Gallery */}
+                <ProductGallery
+                    mainImage={product.image}
+                    additionalImages={product.additionalImages || []}
+                    productName={product.name}
+                />
 
                 {/* Product Details */}
                 <div className="flex flex-col justify-center">
                     <div className="mb-6">
-                        <h1 className="text-3xl font-bold tracking-tight text-foreground">
+                        <h1 className="text-4xl font-bold tracking-tight text-foreground">
                             {product.name}
                         </h1>
-                        <p className="mt-2 text-lg text-muted-foreground">{product.subtitle}</p>
+                        <p className="mt-2 text-xl text-muted-foreground italic">{product.subtitle}</p>
                     </div>
 
                     <div className="mb-8">
-                        <p className="text-3xl font-bold text-foreground">{formatPrice(product.price)}</p>
+                        <p className="text-3xl font-bold text-[var(--price-red)]">{formatPrice(product.price)}</p>
                     </div>
 
                     {/* Size Selector */}
-                    <SizeSelector sizes={product.sizes} />
+                    <div className="font-sans">
+                        <SizeSelector sizes={product.sizes} />
+                    </div>
 
                     <div className="mb-8 mt-6">
                         <p className="text-sm font-medium text-green-600">En stock</p>

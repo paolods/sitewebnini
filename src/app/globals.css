@@ -27,6 +27,8 @@
     --input: #e2e8f0;
 
     --radius: 0.3rem;
+    --price-red: #8B1E1E;
+    /* Darker red matching the mockup */
   }
 
   .dark {

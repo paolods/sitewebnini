@@ -42,30 +42,32 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
           {products.map((product) => (
             <Link
               key={product.id}
               href={`/products/${product.id}`}
-              className="group flex flex-col items-center text-center transition-opacity hover:opacity-80"
+              className="group flex flex-col items-center text-center transition-all hover:translate-y-[-4px]"
             >
               {/* Circular Product Image */}
-              <div className="relative mb-4 aspect-square w-full max-w-[200px] overflow-hidden rounded-full bg-muted shadow-sm">
+              <div className="relative mb-6 aspect-square w-full max-w-[220px] overflow-hidden rounded-full transition-shadow group-hover:shadow-md">
                 <Image
                   src={product.image}
                   alt={product.name}
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform group-hover:scale-105"
                 />
               </div>
 
               {/* Product Info */}
-              <div className="space-y-1">
-                <p className="text-sm text-muted-foreground">{product.subtitle}</p>
-                <h3 className="text-base font-medium text-foreground">
+              <div className="flex flex-col items-center space-y-2">
+                <p className="max-w-[180px] text-xs font-serif italic leading-tight text-muted-foreground">
+                  « {product.quote.replace(/[«»]/g, '').trim()} »
+                </p>
+                <h3 className="text-sm font-serif text-foreground">
                   {product.name}
                 </h3>
-                <p className="text-lg font-semibold text-foreground">
+                <p className="text-lg font-bold text-[var(--price-red)]">
                   {formatPrice(product.price)}
                 </p>
               </div>

@@ -113,13 +113,15 @@ export function Footer() {
                     </div>
 
                     <div className="flex-1 flex justify-center">
-                        <Image
-                            src="/images/logo/1000166046.jpg"
-                            alt="Béatshirts Logo"
-                            width={80}
-                            height={40}
-                            className="h-8 w-auto grayscale opacity-50"
-                        />
+                        <div className="relative group">
+                            <Image
+                                src="/images/logo/1000174392.jpg"
+                                alt="Béatshirts Sceau de Qualité"
+                                width={100}
+                                height={100}
+                                className="h-20 w-auto transition-transform duration-700 group-hover:rotate-[360deg]"
+                            />
+                        </div>
                     </div>
 
                     <div className="text-[10px] text-muted-foreground uppercase tracking-widest font-medium">

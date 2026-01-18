@@ -164,7 +164,16 @@ export default function CartPage() {
                                 </p>
                             </div>
 
-                            <button className="w-full bg-black text-white py-4 rounded-card font-bold uppercase tracking-widest hover:bg-gray-800 transition-all shadow-soft mb-4">
+                            <button
+                                onClick={() => {
+                                    if (confirm("Voulez-vous procéder au paiement sécurisé via Stripe/PayPal ? (Ceci est une simulation)")) {
+                                        clearCart();
+                                        alert("Paiement réussi ! Merci de votre commande. Vous allez être redirigé vers l'accueil.");
+                                        window.location.href = "/";
+                                    }
+                                }}
+                                className="w-full bg-black text-white py-4 rounded-card font-bold uppercase tracking-widest hover:bg-gray-800 transition-all shadow-soft mb-4 active:scale-95"
+                            >
                                 Procéder au paiement
                             </button>
 

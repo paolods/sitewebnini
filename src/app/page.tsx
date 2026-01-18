@@ -61,6 +61,16 @@ export default function Home() {
             <p className="text-xs text-muted-foreground italic mb-4">Une question sur nos produits ou votre commande ?</p>
             <Link href="/contact" className="text-xs font-bold uppercase underline hover:text-[var(--price-red)]">Contactez-nous</Link>
           </div>
+
+          <div className="mt-8 flex justify-center">
+            <Image
+              src="/images/logo/1000174392.jpg"
+              alt="Béatshirts Sceau de Qualité"
+              width={150}
+              height={150}
+              className="w-32 h-auto opacity-80 hover:opacity-100 transition-opacity"
+            />
+          </div>
         </aside>
 
         {/* Main Content */}

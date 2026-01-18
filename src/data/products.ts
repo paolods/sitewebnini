@@ -5,47 +5,98 @@ export interface Product {
   description: string;
   image: string;
   category: string;
+  subtitle: string;
+  quote: string;
+  sizes: string[];
 }
 
 export const products: Product[] = [
   {
-    id: "1",
-    name: "L'Éveil Spirituel",
-    price: 29.99,
-    description: "Une toile vibrante qui capture l'essence de la sérénité et de l'harmonie intérieure. Parfaite pour créer une atmosphère apaisante.",
-    image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=1000&auto=format&fit=crop",
-    category: "Tableaux",
+    id: "beatshirt-heureux-les-doux",
+    name: "Béatshirt – «Heureux les doux»",
+    subtitle: "La Sainte Vierge et Catherine Labouré",
+    price: 14.00,
+    description: "Inspirés des paroles de Jésus dans l'Évangile selon Matthieu, nos t-shirts mettent en lumière les Béatitudes, messages intemporels d'espérance, de douceur et de foi.",
+    image: "/images/heureux-les-doux.jpg",
+    category: "Béatshirts",
+    quote: "« Heureux les doux, car ils recevront la terre en héritage »",
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"]
   },
   {
-    id: "2",
-    name: "Lumière Divine",
-    price: 34.50,
-    description: "Des nuances dorées et blanches s'entremêlent pour évoquer la pureté et la lumière. Une pièce maîtresse pour votre salon.",
-    image: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=1000&auto=format&fit=crop",
-    category: "Abstrait",
+    id: "beatshirt-heureux-ceux-qui-pleurent",
+    name: "Béatshirts – «Heureux ceux qui pleurent»",
+    subtitle: "Saint-Raphaël Archange",
+    price: 14.00,
+    description: "Inspirés des paroles de Jésus dans l'Évangile selon Matthieu, nos t-shirts mettent en lumière les Béatitudes, messages intemporels d'espérance, de douceur et de foi.",
+    image: "/images/heureux-ceux-qui-pleurent.jpg",
+    category: "Béatshirts",
+    quote: "« Heureux ceux qui pleurent, car ils seront consolés »",
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"]
   },
   {
-    id: "3",
-    name: "Reflet de l'Âme",
-    price: 45.00,
-    description: "Une exploration profonde des couleurs froides, symbolisant la paix et l'introspection. Idéal pour un espace de méditation.",
-    image: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1000&auto=format&fit=crop",
-    category: "Modern",
+    id: "beatshirt-heureux-les-misericordieux",
+    name: "Béatshirts –«Heureux les miséricordieux»",
+    subtitle: "Sainte Vierge",
+    price: 14.00,
+    description: "Inspirés des paroles de Jésus dans l'Évangile selon Matthieu, nos t-shirts mettent en lumière les Béatitudes, messages intemporels d'espérance, de douceur et de foi.",
+    image: "/images/heureux-les-misericordieux.jpg",
+    category: "Béatshirts",
+    quote: "« Heureux les miséricordieux, car ils obtiendront miséricorde »",
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"]
   },
   {
-    id: "4",
-    name: "Souffle de Vie",
-    price: 39.99,
-    description: "Une composition dynamique pleine d'énergie et de mouvement. Apportez de la vitalité à votre intérieur.",
-    image: "https://images.unsplash.com/photo-1549490349-8643362247b5?q=80&w=1000&auto=format&fit=crop",
-    category: "Expressionnisme",
+    id: "beatshirt-heureux-les-coeurs-purs",
+    name: "Béatshirts – «Heureux les Cœurs purs»",
+    subtitle: "Sainte Trinité",
+    price: 14.00,
+    description: "Inspirés des paroles de Jésus dans l'Évangile selon Matthieu, nos t-shirts mettent en lumière les Béatitudes, messages intemporels d'espérance, de douceur et de foi.",
+    image: "/images/heureux-les-coeurs-purs.jpg",
+    category: "Béatshirts",
+    quote: "« Heureux les Cœurs purs, car ils verront Dieu »",
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"]
   },
   {
-    id: "5",
-    name: "Harmonie Céleste",
-    price: 55.00,
-    description: "Un mélange subtil de textures et de formes qui invite à la rêverie. Une œuvre d'art unique pour les collectionneurs.",
-    image: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?q=80&w=1000&auto=format&fit=crop",
-    category: "Tableaux",
+    id: "beatshirt-heureux-artisans-paix",
+    name: "Béatshirts – «Heureux les artisans de Paix»",
+    subtitle: "Saint Michel Archange",
+    price: 14.00,
+    description: "Inspirés des paroles de Jésus dans l'Évangile selon Matthieu, nos t-shirts mettent en lumière les Béatitudes, messages intemporels d'espérance, de douceur et de foi.",
+    image: "/images/heureux-artisans-paix.jpg",
+    category: "Béatshirts",
+    quote: "« Heureux les artisans de Paix, car ils seront appelés fils de Dieu »",
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"]
   },
+  {
+    id: "beatshirt-heureux-ont-faim-soif-justice",
+    name: "Béatshirts – «Heureux ceux qui ont faim et soif de la justice»",
+    subtitle: "Sainte Trinité",
+    price: 14.00,
+    description: "Inspirés des paroles de Jésus dans l'Évangile selon Matthieu, nos t-shirts mettent en lumière les Béatitudes, messages intemporels d'espérance, de douceur et de foi.",
+    image: "/images/heureux-faim-soif-justice.jpg",
+    category: "Béatshirts",
+    quote: "« Heureux ceux qui ont faim et soif de la justice, car ils seront rassasiés »",
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"]
+  },
+  {
+    id: "beatshirt-heureux-pauvres-coeur",
+    name: "Béatshirts – «Heureux les pauvres de cœur»",
+    subtitle: "Saint François d'Assise",
+    price: 14.00,
+    description: "Inspirés des paroles de Jésus dans l'Évangile selon Matthieu, nos t-shirts mettent en lumière les Béatitudes, messages intemporels d'espérance, de douceur et de foi.",
+    image: "/images/heureux-pauvres-coeur.jpg",
+    category: "Béatshirts",
+    quote: "« Heureux les pauvres de cœur, car le royaume des Cieux est à eux »",
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"]
+  },
+  {
+    id: "beatshirt-heureux-persecutes",
+    name: "Béatshirts – «Heureux les persécutés»",
+    subtitle: "Sainte Jeanne d'Arc",
+    price: 14.00,
+    description: "Inspirés des paroles de Jésus dans l'Évangile selon Matthieu, nos t-shirts mettent en lumière les Béatitudes, messages intemporels d'espérance, de douceur et de foi.",
+    image: "/images/heureux-persecutes.jpg",
+    category: "Béatshirts",
+    quote: "« Heureux les persécutés pour la justice, car le royaume des Cieux est à eux »",
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"]
+  }
 ];

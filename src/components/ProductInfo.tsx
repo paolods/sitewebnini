@@ -15,12 +15,11 @@ interface ProductInfoProps {
 export default function ProductInfo({ product }: ProductInfoProps) {
     const { addToCart } = useCart();
     const router = useRouter();
-    const [selectedSize, setSelectedSize] = useState<string>("M");
+    // Use product-specific sizes
+    const availableSizes = product.sizes;
+    const [selectedSize, setSelectedSize] = useState<string>(availableSizes[0] || "M");
     const [quantity, setQuantity] = useState(1);
     const [addedToCart, setAddedToCart] = useState(false);
-
-    // Filter to requested sizes
-    const availableSizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
     const handleAddToCart = () => {
         addToCart({

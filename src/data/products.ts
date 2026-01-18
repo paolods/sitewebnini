@@ -21,7 +21,7 @@ export const products: Product[] = [
     image: "/images/IMG-20251001-WA0012.jpg",
     category: "Béatshirts",
     quote: "« Heureux les doux, car ils recevront la terre en héritage »",
-    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+    sizes: ["XS", "S", "M", "L"],
     additionalImages: ["/images/T-shirts/20251007_105622.jpg", "/images/T-shirts/20251007_105755.jpg"]
   },
   {
@@ -33,7 +33,7 @@ export const products: Product[] = [
     image: "/images/IMG-20251001-WA0009.jpg",
     category: "Béatshirts",
     quote: "« Heureux ceux qui pleurent, car ils seront consolés »",
-    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+    sizes: ["XS", "S", "M", "L"],
     additionalImages: ["/images/T-shirts/20251007_105413.jpg", "/images/T-shirts/20251007_105455.jpg"]
   },
   {
@@ -45,7 +45,7 @@ export const products: Product[] = [
     image: "/images/IMG-20251001-WA0015.jpg",
     category: "Béatshirts",
     quote: "« Heureux les miséricordieux, car ils obtiendront miséricorde »",
-    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+    sizes: ["XS", "S", "M", "L"],
     additionalImages: ["/images/T-shirts/20251007_105913.jpg", "/images/T-shirts/20251007_105921.jpg"]
   },
   {
@@ -57,7 +57,7 @@ export const products: Product[] = [
     image: "/images/IMG-20251001-WA0016.jpg",
     category: "Béatshirts",
     quote: "« Heureux les Cœurs purs, car ils verront Dieu »",
-    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+    sizes: ["XS", "S", "M", "L"],
     additionalImages: ["/images/T-shirts/20251007_110017.jpg", "/images/T-shirts/20251007_110024.jpg"]
   },
   {
@@ -69,7 +69,7 @@ export const products: Product[] = [
     image: "/images/IMG-20251001-WA0017.jpg",
     category: "Béatshirts",
     quote: "« Heureux les artisans de Paix, car ils seront appelés fils de Dieu »",
-    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+    sizes: ["XS", "S", "M", "L"],
     additionalImages: ["/images/T-shirts/20251007_110332.jpg", "/images/T-shirts/20251007_110407.jpg", "/images/T-shirts/20251007_110621.jpg"]
   },
   {
@@ -81,7 +81,7 @@ export const products: Product[] = [
     image: "/images/IMG-20251001-WA0013.jpg",
     category: "Béatshirts",
     quote: "« Heureux ceux qui ont faim et soif de la justice, car ils seront rassasiés »",
-    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+    sizes: ["XS", "S", "M", "L"],
     additionalImages: ["/images/T-shirts/20251007_110219.jpg", "/images/T-shirts/20251007_110234.jpg"]
   },
   {
@@ -93,7 +93,7 @@ export const products: Product[] = [
     image: "/images/IMG-20251001-WA0018.jpg",
     category: "Béatshirts",
     quote: "« Heureux ceux qui sont persécutés pour la justice, car le royaume des Cieux est à eux »",
-    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+    sizes: ["XS", "S", "M", "L"],
     additionalImages: []
   },
   {
@@ -105,7 +105,7 @@ export const products: Product[] = [
     image: "/images/IMG-20251001-WA0019.jpg",
     category: "Béatshirts",
     quote: "« Réjouissez-vous, soyez dans l'allégresse, car votre récompense est grande dans les cieux »",
-    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+    sizes: ["XS", "S", "M", "L"],
     additionalImages: []
   }
 ];

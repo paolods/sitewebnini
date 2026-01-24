@@ -4,88 +4,82 @@ import { Instagram, Facebook, Mail, Heart, ShieldCheck } from "lucide-react";
 
 export function Footer() {
     return (
-        <footer className="bg-[var(--bg-kawaii)] pt-20 pb-10 border-t border-[var(--border-soft)]">
-            <div className="container mx-auto px-6">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+        <footer className="bg-[var(--bg-kawaii)] pt-32 pb-16 border-t border-[var(--border-soft)]/50">
+            <div className="container mx-auto px-8 max-w-7xl">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-20 mb-20">
                     {/* Maison Section */}
                     <div className="col-span-1 md:col-span-1 flex flex-col items-center md:items-start">
                         <Image
                             src="/images/logo/1000166046.jpg"
                             alt="Béatshirts"
-                            width={140}
-                            height={70}
-                            className="h-14 w-auto object-contain mb-6 grayscale hover:grayscale-0 transition-soft cursor-pointer"
+                            width={160}
+                            height={80}
+                            className="h-16 w-auto object-contain mb-8 grayscale hover:grayscale-0 transition-soft cursor-pointer"
                         />
-                        <p className="text-xs text-[var(--text-muted)] italic leading-relaxed text-center md:text-left">
-                            "Porter la foi avec élégance et douceur. <br />
-                            Imaginé avec amour dans notre petit atelier."
+                        <p className="text-sm text-[var(--text-muted)] italic leading-relaxed text-center md:text-left">
+                            "Porter la foi avec élégance et une infinie douceur. <br />
+                            Chaque pièce est un poème imaginé avec amour."
                         </p>
-                        <div className="flex gap-4 mt-8">
-                            <Link href="#" className="p-2.5 bg-white rounded-full text-[var(--text-muted)] hover:text-[var(--accent-vibrant)] hover:shadow-sm transition-soft border border-[var(--border-soft)]">
-                                <Instagram className="h-4 w-4" />
-                            </Link>
-                            <Link href="#" className="p-2.5 bg-white rounded-full text-[var(--text-muted)] hover:text-[var(--accent-vibrant)] hover:shadow-sm transition-soft border border-[var(--border-soft)]">
-                                <Facebook className="h-4 w-4" />
-                            </Link>
-                            <Link href="#" className="p-2.5 bg-white rounded-full text-[var(--text-muted)] hover:text-[var(--accent-vibrant)] hover:shadow-sm transition-soft border border-[var(--border-soft)]">
-                                <Mail className="h-4 w-4" />
-                            </Link>
+                        <div className="flex gap-6 mt-10">
+                            {/* Social Buttons - More Round/Soft */}
+                            {[Instagram, Facebook, Mail].map((Icon, idx) => (
+                                <Link key={idx} href="#" className="p-4 bg-white rounded-full text-[var(--text-muted)] hover:text-[var(--accent-vibrant)] hover:shadow-kawaii hover:-translate-y-1 transition-soft border border-[var(--border-soft)]">
+                                    <Icon className="h-5 w-5" />
+                                </Link>
+                            ))}
                         </div>
                     </div>
 
                     {/* Navigation Columns */}
                     <div className="flex flex-col items-center md:items-start">
-                        <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--text-kawaii-pink)] mb-6">La Boutique</h4>
-                        <ul className="space-y-4 text-xs font-bold text-[var(--text-main)] uppercase tracking-wider">
+                        <h4 className="text-[11px] font-black uppercase tracking-[0.3em] text-[var(--text-kawaii-pink)] mb-8">La Boutique</h4>
+                        <ul className="space-y-5 text-[12px] font-bold text-[var(--text-main)] uppercase tracking-widest">
                             <li><Link href="/" className="hover:text-[var(--accent-vibrant)] transition-soft">Accueil</Link></li>
                             <li><Link href="/collections/nouveautes" className="hover:text-[var(--accent-vibrant)] transition-soft">Nouveautés</Link></li>
                             <li><Link href="/collections/beatshirts" className="hover:text-[var(--accent-vibrant)] transition-soft">Les Béatshirts</Link></li>
-                            <li><Link href="/gift-cards" className="hover:text-[var(--accent-vibrant)] transition-soft">Cartes Cadeaux</Link></li>
                         </ul>
                     </div>
 
                     <div className="flex flex-col items-center md:items-start">
-                        <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--text-kawaii-pink)] mb-6">L'Atelier</h4>
-                        <ul className="space-y-4 text-xs font-bold text-[var(--text-main)] uppercase tracking-wider">
+                        <h4 className="text-[11px] font-black uppercase tracking-[0.3em] text-[var(--text-kawaii-pink)] mb-8">L'Atelier</h4>
+                        <ul className="space-y-5 text-[12px] font-bold text-[var(--text-main)] uppercase tracking-widest">
                             <li><Link href="/a-propos" className="hover:text-[var(--accent-vibrant)] transition-soft">Notre Histoire</Link></li>
                             <li><Link href="/concept" className="hover:text-[var(--accent-vibrant)] transition-soft">Le Concept</Link></li>
                             <li><Link href="/contact" className="hover:text-[var(--accent-vibrant)] transition-soft">Contact</Link></li>
-                            <li><Link href="/faq" className="hover:text-[var(--accent-vibrant)] transition-soft">Aide & FAQ</Link></li>
                         </ul>
                     </div>
 
-                    {/* Reassurance Small Box */}
-                    <div className="bg-white/50 backdrop-blur-sm p-8 rounded-card-kawaii border border-[var(--border-soft)]">
-                        <div className="flex items-center gap-3 mb-4">
-                            <ShieldCheck className="h-5 w-5 text-[var(--text-kawaii-pink)]" />
-                            <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--text-main)]">Achat Serein</span>
+                    {/* Reassurance Small Box - More "Object" feel */}
+                    <div className="bg-white rounded-card-kawaii p-10 shadow-soft border border-[var(--border-soft)] relative overflow-hidden group">
+                        <div className="absolute top-0 left-0 w-1 h-full bg-[var(--accent-soft)]"></div>
+                        <div className="flex items-center gap-4 mb-6">
+                            <ShieldCheck className="h-6 w-6 text-[var(--accent-vibrant)]" />
+                            <span className="text-[11px] font-black uppercase tracking-[0.2em] text-[var(--text-main)]">Achat Serein</span>
                         </div>
-                        <p className="text-[10px] text-[var(--text-muted)] leading-relaxed mb-6">
-                            Paiement 100% sécurisé via Stripe & PayPal. <br />
-                            Livraison soignée et suivie.
+                        <p className="text-[11px] text-[var(--text-muted)] leading-relaxed mb-8 font-medium italic">
+                            "Paiement 100% sécurisé via Stripe & PayPal. Votre douceur, notre priorité."
                         </p>
-                        <div className="flex gap-2 opacity-50 grayscale hover:grayscale-0 transition-soft">
-                            <div className="h-4 w-6 bg-gray-200 rounded-sm"></div>
-                            <div className="h-4 w-6 bg-gray-200 rounded-sm"></div>
-                            <div className="h-4 w-6 bg-gray-200 rounded-sm"></div>
+                        <div className="flex gap-3 opacity-40 grayscale group-hover:grayscale-0 transition-soft">
+                            <div className="h-6 w-10 bg-gray-100 rounded-md border border-gray-200"></div>
+                            <div className="h-6 w-10 bg-gray-100 rounded-md border border-gray-200"></div>
                         </div>
                     </div>
                 </div>
 
-                {/* Bottom Bar */}
-                <div className="pt-8 border-t border-[var(--border-soft)] flex flex-col md:flex-row items-center justify-between gap-6">
-                    <div className="text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted)]">
-                        © {new Date().getFullYear()} Béatshirts Maison Créative. Tous droits réservés.
+                {/* Bottom Bar - Elegant & Minimal */}
+                <div className="pt-12 border-t border-[var(--border-soft)]/50 flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--text-muted)] opacity-60">
+                        © {new Date().getFullYear()} Béatshirts Maison Créative. <span className="hidden sm:inline">Tous droits réservés.</span>
                     </div>
 
-                    <div className="flex items-center gap-2 text-[var(--text-kawaii-pink)]">
-                        <Heart className="h-3 w-3 fill-current" />
-                        <span className="text-[9px] font-bold uppercase tracking-[0.2em]">Fait avec douceur</span>
+                    <div className="flex items-center gap-3 text-[var(--text-kawaii-pink)] animate-bounce-slow">
+                        <Heart className="h-4 w-4 fill-current" />
+                        <span className="text-[10px] font-black uppercase tracking-[0.3em]">Fait avec amour</span>
                     </div>
 
-                    <div className="flex gap-6 text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted)]">
-                        <Link href="/legal" className="hover:text-[var(--text-main)]">Légal</Link>
-                        <Link href="/privacy" className="hover:text-[var(--text-main)]">Confidentialité</Link>
+                    <div className="flex gap-8 text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--text-muted)]">
+                        <Link href="/legal" className="hover:text-[var(--text-main)] transition-soft">Légal</Link>
+                        <Link href="/privacy" className="hover:text-[var(--text-main)] transition-soft">Confidentialité</Link>
                     </div>
                 </div>
             </div>

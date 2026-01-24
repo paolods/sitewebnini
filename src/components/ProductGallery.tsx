@@ -14,7 +14,7 @@ export default function ProductGallery({ mainImage, additionalImages, productNam
     const [selectedImage, setSelectedImage] = useState(0);
 
     return (
-        <div className="flex flex-col gap-6">
+        <div className="grid grid-cols-1 gap-6">
             {/* Main Image Display - Soft & Rounded */}
             <div className="relative aspect-square w-full overflow-hidden rounded-kawaii border border-[var(--border-soft)] bg-white shadow-soft group">
                 <Image

@@ -82,14 +82,14 @@ export function Header() {
 
                     {/* Navigation - FIXED SPACING & AESTHETIC */}
                     <nav className="mt-8 pt-6 border-t border-[var(--border-soft)]/50">
-                        <ul className="flex flex-wrap items-center justify-center gap-x-16 gap-y-4">
+                        <ul className="flex flex-wrap items-center justify-center gap-x-24 gap-y-4">
                             {['Accueil', 'Nouveautés', 'Les Béatshirts', "L'Atelier", 'Contact'].map((item) => (
                                 <li key={item}>
                                     <Link
                                         href={item === 'Accueil' ? '/' :
                                             item === 'Les Béatshirts' ? '/collections/beatshirts' :
                                                 `/collections/${item.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ /g, '-')}`}
-                                        className="text-[12px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted)] hover:text-[var(--text-kawaii-pink)] transition-soft relative py-2 group whitespace-nowrap"
+                                        className="text-[12px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted)] hover:text-[var(--text-kawaii-pink)] transition-soft relative px-6 py-3 group whitespace-nowrap"
                                     >
                                         {item}
                                         <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-[var(--accent-soft)] rounded-full group-hover:w-full transition-soft"></span>

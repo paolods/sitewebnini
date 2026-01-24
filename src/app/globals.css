@@ -1,58 +1,55 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-  /* Artisanal Kawaii Palette - Enhanced Softness */
-  --bg-soft: #FFFCFA;
-  --bg-kawaii: #FFF5F4;
-  --card-bg: #FFFFFF;
-  --accent-soft: #FFE4E9;
-  --accent-vibrant: #FF8DA1;
-  --accent-sage: #F0F7F0;
-  --accent-lilac: #F9F4FA;
-  --accent-cream: #FFFDF7;
+@theme {
+  --color-bg-soft: #FFFCFA;
+  --color-bg-kawaii: #FFF5F4;
+  --color-accent-soft: #FFE4E9;
+  --color-accent-vibrant: #FF8DA1;
+  --color-accent-sage: #F0F7F0;
+  --color-accent-lilac: #F9F4FA;
+  --color-accent-cream: #FFFDF7;
 
-  /* Text Colors - Warm & Readable */
-  --text-main: #5D4037;
-  --text-muted: #A68D85;
-  --text-kawaii-pink: #E58A9A;
+  --color-text-main: #5D4037;
+  --color-text-muted: #A68D85;
+  --color-text-kawaii-pink: #E58A9A;
 
-  /* UI Elements */
-  --border-soft: #FDE2E8;
-  --price-pink: #FF6B8B;
+  --color-border-soft: #FDE2E8;
+  --color-price-pink: #FF6B8B;
 
-  /* Geometry & Effects - Max Roundness */
   --radius-kawaii: 50px;
   --radius-card: 40px;
   --radius-button: 100px;
+
   --shadow-kawaii: 0 15px 45px -10px rgba(255, 141, 161, 0.15);
   --shadow-soft: 0 8px 30px rgba(93, 64, 55, 0.04);
+}
 
-  /* Transitions */
-  --transition-soft: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+/* Custom Utilities */
+@utility rounded-kawaii {
+  border-radius: var(--radius-kawaii);
+}
 
-  /* Legacy compatibility (to avoid breaking things immediately) */
-  --background: var(--bg-soft);
-  --foreground: var(--text-main);
-  --soft-pink: var(--accent-soft);
-  --off-white: var(--accent-cream);
-  --price-red: var(--price-pink);
-  --card-radius: var(--radius-card);
+@utility rounded-card-kawaii {
+  border-radius: var(--radius-card);
+}
+
+@utility shadow-kawaii {
+  box-shadow: var(--shadow-kawaii);
+}
+
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+@utility transition-soft {
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 body {
-  background-color: var(--bg-soft);
-  color: var(--text-main);
+  background-color: var(--color-bg-soft);
+  color: var(--color-text-main);
   font-family: var(--font-geist-sans), sans-serif;
-  -webkit-font-smoothing: antialiased;
   line-height: 1.8;
-}
-
-/* Fix for default link colors */
-a {
-  color: inherit;
-  text-decoration: none;
 }
 
 h1,
@@ -62,46 +59,10 @@ h4,
 .font-serif {
   font-family: var(--font-cormorant), serif;
   font-weight: 700;
-  letter-spacing: -0.01em;
 }
 
-/* Kawaii Utilities - Enhanced Respiration */
-.rounded-kawaii {
-  border-radius: var(--radius-kawaii);
-}
-
-.rounded-card-kawaii {
-  border-radius: var(--radius-card);
-}
-
-.shadow-kawaii {
-  box-shadow: var(--shadow-kawaii);
-}
-
-.transition-soft {
-  transition: var(--transition-soft);
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-soft);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--accent-soft);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-vibrant);
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* Fix default link colors */
+a {
+  color: inherit;
+  text-decoration: none;
 }

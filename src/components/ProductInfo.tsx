@@ -42,24 +42,24 @@ export default function ProductInfo({ product }: ProductInfoProps) {
         <div className="flex flex-col gap-8">
             <div className="space-y-4">
                 <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--text-muted)] bg-[var(--accent-cream)] px-3 py-1 rounded-full border border-[var(--border-soft)]">
+                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-text-muted bg-accent-cream px-4 py-1.5 rounded-full border border-border-soft">
                         Maison Béatshirts
                     </span>
                 </div>
 
-                <h1 className="text-4xl md:text-5xl font-serif text-[var(--text-main)] leading-tight">
+                <h1 className="text-4xl md:text-5xl font-serif text-text-main leading-tight">
                     {product.name}
                 </h1>
 
-                <p className="text-lg text-[var(--text-muted)] italic font-serif">
+                <p className="text-lg text-text-muted italic font-serif">
                     {product.subtitle}
                 </p>
 
-                <div className="flex items-center gap-6 py-4 border-y border-[var(--border-soft)]">
-                    <p className="text-4xl font-serif font-bold text-[var(--price-pink)]">
+                <div className="flex items-center gap-6 py-6 border-y border-border-soft/50">
+                    <p className="text-4xl font-serif font-bold text-price-pink">
                         {formatPrice(product.price)}
                     </p>
-                    <span className="text-[10px] text-[var(--text-muted)] font-bold uppercase tracking-widest bg-[var(--bg-kawaii)] px-3 py-1 rounded-full">
+                    <span className="text-[10px] text-text-muted font-black uppercase tracking-widest bg-bg-kawaii px-4 py-1.5 rounded-full">
                         TVA Incluse
                     </span>
                 </div>
@@ -68,19 +68,19 @@ export default function ProductInfo({ product }: ProductInfoProps) {
             {/* Size Selector - Soft Circles */}
             <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                    <label className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-main)]">
-                        Choisir ma taille : <span className="text-[var(--text-kawaii-pink)] ml-1">{selectedSize}</span>
+                    <label className="text-[11px] font-black uppercase tracking-wider text-text-main">
+                        Choisir ma taille : <span className="text-text-kawaii-pink ml-1">{selectedSize}</span>
                     </label>
-                    <Link href="#" className="text-[10px] text-[var(--text-muted)] underline hover:text-[var(--text-main)] transition-soft">Guide des tailles</Link>
+                    <button className="text-[10px] text-text-muted underline hover:text-text-main transition-soft font-bold">Guide des tailles</button>
                 </div>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-4">
                     {availableSizes.map((size) => (
                         <button
                             key={size}
                             onClick={() => setSelectedSize(size)}
-                            className={`h-12 w-12 flex items-center justify-center rounded-full border-2 font-bold text-xs transition-soft ${selectedSize === size
-                                ? "border-[var(--accent-vibrant)] bg-white text-[var(--accent-vibrant)] shadow-kawaii scale-110"
-                                : "border-transparent bg-[var(--accent-cream)] text-[var(--text-muted)] hover:border-[var(--border-soft)]"
+                            className={`h-14 w-14 flex items-center justify-center rounded-full border-2 font-black text-xs transition-soft ${selectedSize === size
+                                ? "border-accent-vibrant bg-white text-accent-vibrant shadow-kawaii scale-105"
+                                : "border-transparent bg-accent-cream text-text-muted hover:border-border-soft"
                                 }`}
                         >
                             {size}
@@ -91,48 +91,53 @@ export default function ProductInfo({ product }: ProductInfoProps) {
 
             {/* Quantity - Squishy Buttons */}
             <div className="space-y-4">
-                <label className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-main)]">
+                <label className="text-[11px] font-black uppercase tracking-wider text-text-main">
                     Quantité
                 </label>
                 <div className="flex items-center gap-4">
-                    <div className="flex items-center bg-[var(--bg-kawaii)] rounded-button border border-[var(--border-soft)] overflow-hidden">
+                    <div className="flex items-center bg-bg-kawaii rounded-full border border-border-soft overflow-hidden">
                         <button
                             onClick={() => setQuantity(q => Math.max(1, q - 1))}
-                            className="px-5 py-3 hover:bg-[var(--accent-soft)]/20 hover:text-[var(--price-pink)] transition-soft font-bold"
+                            className="px-6 py-4 hover:bg-accent-soft/20 text-text-muted hover:text-price-pink transition-soft font-black"
                         >—</button>
-                        <span className="px-5 py-3 font-bold w-14 text-center text-sm text-[var(--text-main)]">{quantity}</span>
+                        <span className="px-6 py-4 font-black w-16 text-center text-sm text-text-main">{quantity}</span>
                         <button
                             onClick={() => setQuantity(q => q + 1)}
-                            className="px-5 py-3 hover:bg-[var(--accent-soft)]/20 hover:text-[var(--price-pink)] transition-soft font-bold"
+                            className="px-6 py-4 hover:bg-accent-soft/20 text-text-muted hover:text-price-pink transition-soft font-black"
                         >+</button>
                     </div>
                 </div>
             </div>
 
-            {/* Actions - Welcoming buttons */}
-            <div className="flex flex-col gap-4 pt-4">
+            {/* Actions - Welcoming buttons - WHITE STYLE RESTORED */}
+            <div className="flex flex-col gap-4 pt-6">
                 <button
                     onClick={handleAddToCart}
-                    className={`flex items-center justify-center gap-3 w-full py-5 rounded-button font-bold uppercase tracking-widest text-xs transition-soft shadow-kawaii active:scale-95 ${addedToCart
-                        ? "bg-green-100 text-green-600 border border-green-200"
-                        : "bg-[var(--accent-vibrant)] text-white hover:bg-[#ff7a91]"}`}
+                    className={`flex items-center justify-center gap-4 w-full py-6 rounded-full font-black uppercase tracking-[0.2em] text-[11px] border-2 transition-soft shadow-soft active:scale-95 ${addedToCart
+                        ? "bg-green-500 text-white border-transparent"
+                        : "bg-white text-accent-vibrant border-accent-vibrant hover:bg-accent-vibrant hover:text-white hover:shadow-kawaii"}`}
                 >
-                    <ShoppingBag className="h-4 w-4" />
+                    <ShoppingBag className={`h-5 w-5 ${addedToCart ? "text-white" : "text-accent-vibrant group-hover:text-white"}`} />
                     {addedToCart ? "Trésor Ajouté !" : "Ajouter au Panier"}
                 </button>
                 <button
                     onClick={handleBuyNow}
-                    className="flex items-center justify-center gap-3 w-full py-5 rounded-button font-bold uppercase tracking-widest text-xs bg-[var(--text-main)] text-white hover:bg-[#4a332c] transition-soft shadow-lg active:scale-95"
+                    className="flex items-center justify-center gap-4 w-full py-6 rounded-full font-black uppercase tracking-[0.2em] text-[11px] bg-white text-text-main border-2 border-text-main hover:bg-text-main hover:text-white hover:shadow-xl transition-soft active:scale-95 group"
                 >
-                    <Zap className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                    <Zap className="h-5 w-5 text-text-main group-hover:text-yellow-300 transition-soft fill-current group-hover:fill-yellow-300" />
                     Achat Direct
                 </button>
             </div>
 
-            <button className="flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--accent-vibrant)] transition-soft mt-2">
-                <Heart className="h-4 w-4" />
-                Ajouter à ma liste de souhaits
-            </button>
+            <div className="flex flex-col items-center gap-4 mt-2">
+                <button className="flex items-center justify-center gap-3 text-[10px] font-black uppercase tracking-widest text-text-muted hover:text-accent-vibrant transition-soft">
+                    <Heart className="h-4 w-4" />
+                    Ajouter à ma liste de souhaits
+                </button>
+                <Link href="/concept" className="text-[10px] text-text-muted italic hover:text-accent-vibrant transition-soft underline decoration-accent-soft underline-offset-4">
+                    Comprendre le Concept Béatshirts
+                </Link>
+            </div>
 
             {/* Trust Badges - Reassuring Boxes */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 border-t border-[var(--border-soft)]">

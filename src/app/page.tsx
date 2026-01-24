@@ -36,7 +36,7 @@ export default function Home() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <Link
-                href="/collections/les-beatshirts"
+                href="/collections/beatshirts"
                 className="group bg-[var(--accent-vibrant)] text-white px-14 py-6 rounded-full font-bold uppercase tracking-[0.25em] text-[11px] shadow-kawaii hover:shadow-xl hover:-translate-y-1 active:scale-95 transition-all flex items-center gap-3"
               >
                 Découvrir la collection

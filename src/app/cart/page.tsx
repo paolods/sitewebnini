@@ -2,215 +2,154 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Trash2, Plus, Minus, ArrowLeft, ShoppingBag, Zap } from "lucide-react";
+import { Trash2, Plus, Minus, ArrowLeft, ShoppingBag, Zap, Heart } from "lucide-react";
 import { useCart } from "@/components/CartContext";
 import { formatPrice } from "@/lib/utils";
 
 export default function CartPage() {
-    const { cart, removeFromCart, updateQuantity, cartTotal, clearCart } = useCart();
+    const { cart, removeFromCart, updateQuantity, cartTotal, cartCount } = useCart();
 
-    if (cart.length === 0) {
+    if (cartCount === 0) {
         return (
-            <div className="min-h-[60vh] flex flex-col items-center justify-center p-4 text-center">
-                <div className="bg-[var(--off-white)] p-8 rounded-full mb-6">
-                    <ShoppingBag className="h-12 w-12 text-muted-foreground" />
+            <div className="min-h-[70vh] flex flex-col items-center justify-center p-6 text-center bg-[var(--bg-soft)]">
+                <div className="w-24 h-24 bg-[var(--accent-cream)] rounded-full flex items-center justify-center mb-8 border border-[var(--border-soft)]">
+                    <ShoppingBag className="h-10 w-10 text-[var(--text-muted)] opacity-50" />
                 </div>
-                <h1 className="text-3xl font-serif font-bold mb-4 text-foreground">Votre panier est vide</h1>
-                <p className="text-muted-foreground mb-8 max-w-md">
-                    Il semble que vous n'ayez pas encore ajouté de Béatshirts à votre panier.
-                    Découvrez notre collection pour trouver celui qui vous inspire.
-                </p>
+                <h1 className="text-4xl font-serif text-[var(--text-main)] mb-4">Votre panier est tout léger...</h1>
+                <p className="text-[var(--text-muted)] italic mb-10 max-w-sm">"On dirait qu'aucun trésor n'a encore trouvé son chemin jusqu'ici."</p>
                 <Link
-                    href="/"
-                    className="bg-[var(--price-red)] text-white px-8 py-4 rounded-card font-bold uppercase tracking-widest hover:bg-red-800 transition-all shadow-soft"
+                    href="/collections/beatshirts"
+                    className="bg-[var(--accent-vibrant)] text-white px-10 py-4 rounded-button font-bold uppercase tracking-widest text-xs shadow-kawaii hover:scale-105 transition-soft"
                 >
-                    Continuer mes achats
+                    Explorer la collection
                 </Link>
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-background pb-20">
-            {/* Breadcrumbs */}
-            <div className="container mx-auto px-4 py-8 text-sm text-muted-foreground">
-                <nav className="flex items-center gap-2">
-                    <Link href="/" className="hover:text-foreground">Accueil</Link>
-                    <span>/</span>
-                    <span className="text-foreground font-medium">Votre panier</span>
-                </nav>
-            </div>
-
-            <div className="container mx-auto px-4">
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
-                    <h1 className="text-4xl font-serif font-bold text-foreground flex items-center gap-4">
-                        Votre panier
-                        <span className="text-sm font-sans font-normal text-muted-foreground bg-[var(--off-white)] px-3 py-1 rounded-full">
-                            {cart.length} {cart.length > 1 ? 'articles' : 'article'}
-                        </span>
-                    </h1>
+        <div className="min-h-screen bg-[var(--bg-soft)] pb-24 pt-12">
+            <div className="container mx-auto px-6">
+                <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4 mb-12 border-b border-[var(--border-soft)] pb-6">
+                    <div>
+                        <h1 className="text-4xl font-serif text-[var(--text-main)]">Mon Panier Doux</h1>
+                        <p className="text-[10px] uppercase tracking-widest text-[var(--text-muted)] mt-1">{cartCount} merveilles sélectionnées</p>
+                    </div>
                     <Link
-                        href="/"
-                        className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[var(--price-red)] hover:underline"
+                        href="/collections/beatshirts"
+                        className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[var(--text-kawaii-pink)] hover:underline transition-soft"
                     >
-                        <ArrowLeft className="h-4 w-4" /> Continuer mes achats
+                        <ArrowLeft className="h-3.5 w-3.5" /> Continuer mes achats
                     </Link>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                    {/* Cart Items List */}
+                    {/* Cart Items */}
                     <div className="lg:col-span-2 space-y-6">
-                        <div className="bg-white rounded-card border border-border shadow-soft overflow-hidden">
-                            <table className="w-full text-left border-collapse">
-                                <thead className="bg-[var(--off-white)] text-xs uppercase tracking-widest font-bold text-muted-foreground border-b border-border">
-                                    <tr>
-                                        <th className="px-6 py-4">Produit</th>
-                                        <th className="px-6 py-4 text-center">Prix</th>
-                                        <th className="px-6 py-4 text-center">Quantité</th>
-                                        <th className="px-6 py-4 text-right">Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="divide-y divide-border/50">
-                                    {cart.map((item) => (
-                                        <tr key={`${item.id}-${item.size}`} className="group hover:bg-gray-50/50 transition-colors">
-                                            <td className="px-6 py-6">
-                                                <div className="flex gap-4">
-                                                    <div className="relative h-24 w-20 flex-shrink-0 bg-[var(--off-white)] rounded-lg overflow-hidden border border-border">
-                                                        <Image
-                                                            src={item.image}
-                                                            alt={item.name}
-                                                            fill
-                                                            className="object-cover"
-                                                        />
-                                                    </div>
-                                                    <div className="flex flex-col justify-center gap-1">
-                                                        <Link href={`/products/${item.id}`} className="font-serif font-bold text-foreground hover:text-[var(--price-red)] transition-colors line-clamp-1">
-                                                            {item.name}
-                                                        </Link>
-                                                        <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">
-                                                            Taille: <span className="text-foreground">{item.size}</span>
-                                                        </p>
-                                                        <button
-                                                            onClick={() => removeFromCart(item.id, item.size)}
-                                                            className="text-[10px] text-muted-foreground flex items-center gap-1 mt-2 hover:text-red-600 transition-colors uppercase font-bold tracking-wider"
-                                                        >
-                                                            <Trash2 className="h-3 w-3" /> Supprimer
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className="px-6 py-6 text-center">
-                                                <span className="font-bold text-foreground">{formatPrice(item.price)}</span>
-                                            </td>
-                                            <td className="px-6 py-6">
-                                                <div className="flex items-center justify-center">
-                                                    <div className="flex items-center border border-border rounded-lg bg-white shadow-sm">
-                                                        <button
-                                                            onClick={() => updateQuantity(item.id, item.size, item.quantity - 1)}
-                                                            className="px-3 py-1 hover:text-[var(--price-red)] transition-colors disabled:opacity-30"
-                                                            disabled={item.quantity <= 1}
-                                                        >
-                                                            <Minus className="h-3 w-3" />
-                                                        </button>
-                                                        <span className="px-2 py-1 font-bold w-10 text-center text-sm">{item.quantity}</span>
-                                                        <button
-                                                            onClick={() => updateQuantity(item.id, item.size, item.quantity + 1)}
-                                                            className="px-3 py-1 hover:text-[var(--price-red)] transition-colors"
-                                                        >
-                                                            <Plus className="h-3 w-3" />
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className="px-6 py-6 text-right font-bold text-[var(--price-red)]">
-                                                {formatPrice(item.price * item.quantity)}
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div className="flex justify-start pt-4">
-                            <button
-                                onClick={clearCart}
-                                className="text-xs font-bold uppercase tracking-widest text-muted-foreground hover:text-red-600 transition-all flex items-center gap-2"
+                        {cart.map((item) => (
+                            <div
+                                key={`${item.id}-${item.size}`}
+                                className="bg-white rounded-card-kawaii border border-[var(--border-soft)] shadow-soft p-6 flex flex-col sm:flex-row items-center gap-6 transition-soft hover:shadow-md"
                             >
-                                <Trash2 className="h-3 w-3" /> Vider mon panier
-                            </button>
-                        </div>
+                                <div className="relative h-28 w-28 bg-[var(--bg-kawaii)] rounded-xl overflow-hidden shrink-0 border border-[var(--border-soft)]">
+                                    <Image
+                                        src={item.image}
+                                        alt={item.name}
+                                        fill
+                                        className="object-cover p-2"
+                                    />
+                                </div>
+
+                                <div className="flex-1 text-center sm:text-left">
+                                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-4">
+                                        <div>
+                                            <h3 className="text-md font-serif font-bold text-[var(--text-main)] leading-tight">{item.name}</h3>
+                                            <p className="text-[10px] font-bold text-[var(--text-kawaii-pink)] uppercase tracking-widest mt-1">
+                                                Taille : <span className="bg-[var(--accent-cream)] px-2 py-0.5 rounded-full border border-[var(--border-soft)] ml-1">{item.size}</span>
+                                            </p>
+                                        </div>
+                                        <p className="text-lg font-serif font-bold text-[var(--price-pink)]">{formatPrice(item.price)}</p>
+                                    </div>
+
+                                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                                        <div className="flex items-center bg-[var(--bg-kawaii)] rounded-full border border-[var(--border-soft)] scale-90">
+                                            <button
+                                                onClick={() => updateQuantity(item.id, item.size!, Math.max(1, item.quantity - 1))}
+                                                className="px-4 py-2 hover:text-[var(--price-pink)] transition-soft"
+                                            ><Minus className="h-3 w-3" /></button>
+                                            <span className="px-4 py-2 text-xs font-bold text-[var(--text-main)] min-w-[40px] text-center">{item.quantity}</span>
+                                            <button
+                                                onClick={() => updateQuantity(item.id, item.size!, item.quantity + 1)}
+                                                className="px-4 py-2 hover:text-[var(--price-pink)] transition-soft"
+                                            ><Plus className="h-3 w-3" /></button>
+                                        </div>
+
+                                        <button
+                                            onClick={() => removeFromCart(item.id, item.size!)}
+                                            className="text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)] hover:text-red-400 transition-soft flex items-center gap-1.5"
+                                        >
+                                            <Trash2 className="h-3.5 w-3.5" /> Retirer
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
 
-                    {/* Summary Sidebar */}
+                    {/* Summary */}
                     <div className="lg:col-span-1">
-                        <div className="bg-white rounded-card border border-border shadow-soft p-8 sticky top-24">
-                            <h2 className="text-xl font-serif font-bold text-foreground mb-6 pb-4 border-b border-border/50">
-                                Récapitulatif
+                        <div className="bg-white rounded-kawaii border border-[var(--border-soft)] shadow-kawaii p-10 sticky top-32 overflow-hidden">
+                            {/* Decorative background flair */}
+                            <div className="absolute -top-10 -right-10 w-32 h-32 bg-[var(--accent-soft)]/10 rounded-full blur-2xl"></div>
+
+                            <h2 className="text-xl font-serif font-bold text-[var(--text-main)] mb-8 flex items-center gap-2">
+                                <Heart className="h-5 w-5 text-[var(--accent-vibrant)]" />
+                                Résumé de ma commande
                             </h2>
 
                             <div className="space-y-4 mb-8">
-                                <div className="flex justify-between text-sm text-muted-foreground">
-                                    <span>Sous-total</span>
-                                    <span className="font-bold text-foreground">{formatPrice(cartTotal)}</span>
+                                <div className="flex justify-between text-xs font-medium text-[var(--text-muted)]">
+                                    <span>Sous-total ({cartCount} objets)</span>
+                                    <span>{formatPrice(cartTotal)}</span>
                                 </div>
-                                <div className="flex justify-between text-sm text-muted-foreground">
-                                    <span>Frais de port</span>
-                                    <span className="text-green-600 font-bold uppercase text-[10px] tracking-widest bg-green-50 px-2 py-0.5 rounded">Offerts</span>
+                                <div className="flex justify-between text-xs font-medium text-[var(--text-muted)]">
+                                    <span>Frais de port douillets</span>
+                                    <span className="text-green-500 font-bold">Inclus ✨</span>
                                 </div>
 
-                                {/* Promo Code */}
-                                <div className="pt-4 border-t border-border/50">
-                                    <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-2 block">
-                                        Code Promo
+                                {/* Promo Code - Soft Look */}
+                                <div className="pt-4 border-t border-[var(--border-soft)]">
+                                    <label className="text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted)] mb-3 block">
+                                        Votre Code Privilège
                                     </label>
                                     <div className="flex gap-2">
                                         <input
                                             type="text"
-                                            placeholder="BEATSHIRTS10"
-                                            className="flex-1 bg-[var(--off-white)] border border-input rounded-md px-3 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-[var(--price-red)]"
+                                            placeholder="DOUCEUR10"
+                                            className="flex-1 bg-[var(--bg-kawaii)] border border-[var(--border-soft)] rounded-full px-5 py-2.5 text-xs text-[var(--text-main)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-soft)] transition-soft"
                                         />
-                                        <button className="text-xs font-bold uppercase tracking-wider text-foreground hover:text-[var(--price-red)] transition-colors">
-                                            Appliquer
+                                        <button className="text-[9px] font-bold uppercase tracking-widest text-[var(--text-kawaii-pink)] hover:text-[var(--accent-vibrant)] transition-soft">
+                                            Valider
                                         </button>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div className="pt-6 border-t border-border/50">
-                                    <div className="flex justify-between items-center mb-1">
-                                        <span className="text-lg font-serif font-bold text-foreground">Total à payer</span>
-                                        <span className="text-3xl font-bold text-[var(--price-red)]">{formatPrice(cartTotal)}</span>
-                                    </div>
-                                    <p className="text-[10px] text-muted-foreground italic text-right">
-                                        Taxes inclues
-                                    </p>
+                            <div className="pt-6 border-t border-[var(--border-soft)] mb-10">
+                                <div className="flex justify-between items-baseline">
+                                    <span className="text-sm font-bold uppercase tracking-widest text-[var(--text-main)]">Total TTC</span>
+                                    <span className="text-3xl font-serif font-bold text-[var(--price-pink)]">{formatPrice(cartTotal)}</span>
                                 </div>
                             </div>
 
-                            <button
-                                onClick={() => {
-                                    if (confirm("Voulez-vous procéder au paiement sécurisé ? (Simulation Stripe)")) {
-                                        clearCart();
-                                        alert("Félicitations ! Votre commande de Béatshirts est validée. Vous allez recevoir un mail de confirmation.");
-                                        window.location.href = "/";
-                                    }
-                                }}
-                                className="w-full bg-black text-white py-4 rounded-card font-bold uppercase tracking-widest hover:bg-gray-800 transition-all shadow-soft mb-6 active:scale-95 flex items-center justify-center gap-3"
-                            >
-                                <Zap className="h-5 w-5 text-yellow-400 fill-yellow-400" />
-                                Commander
+                            <button className="w-full bg-[var(--accent-vibrant)] text-white py-5 rounded-button font-bold uppercase tracking-[0.2em] text-xs shadow-kawaii hover:scale-105 active:scale-95 transition-soft flex items-center justify-center gap-3 mb-4">
+                                <Zap className="h-4 w-4 text-yellow-300 fill-current" />
+                                Passer en caisse
                             </button>
 
-                            <div className="space-y-4 pt-6 border-t border-border/50">
-                                <div className="flex items-center justify-center gap-4 opacity-40 grayscale hover:grayscale-0 transition-all">
-                                    <div className="h-6 w-10 flex items-center justify-center text-[8px] border border-gray-300 rounded font-bold">VISA</div>
-                                    <div className="h-6 w-10 flex items-center justify-center text-[8px] border border-gray-300 rounded font-bold">MC</div>
-                                    <div className="h-6 w-10 flex items-center justify-center text-[8px] border border-gray-300 rounded font-bold">PP</div>
-                                    <div className="h-6 w-10 flex items-center justify-center text-[8px] border border-gray-300 rounded font-bold">AMEX</div>
-                                </div>
-                                <p className="text-[9px] text-center text-muted-foreground font-medium uppercase tracking-tighter">
-                                    Paiement 100% sécurisé via Stripe & PayPal
-                                </p>
-                            </div>
+                            <p className="text-[10px] text-[var(--text-muted)] text-center italic">
+                                "Paiement 100% serein et sécurisé"
+                            </p>
                         </div>
                     </div>
                 </div>

@@ -2,73 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: #ffffff;
-    --foreground: #1a1a1a;
+:root {
+  /* Artisanal Kawaii Palette */
+  --bg-soft: #FFFDFB;
+  --bg-kawaii: #FFF9F8;
+  --card-bg: #FFFFFF;
+  --accent-soft: #FFD1DC;
+  --accent-vibrant: #FF8DA1;
+  --accent-sage: #EAF4EA;
+  --accent-lilac: #F6F0F8;
+  --accent-cream: #FFFCF5;
 
-    --primary: #1a1a1a;
-    --primary-foreground: #ffffff;
+  /* Text Colors - Warm & Readable */
+  --text-main: #5D4037;
+  --text-muted: #8D6E63;
+  --text-kawaii-pink: #D16A7D;
 
-    --secondary: #f4f4f5;
-    --secondary-foreground: #18181b;
+  /* UI Elements */
+  --border-soft: #FDE2E8;
+  --price-pink: #FF6B8B;
 
-    --accent: #5F9EA0;
-    /* Teal/CadetBlue like the mockup */
-    --accent-foreground: #ffffff;
+  /* Geometry & Effects */
+  --radius-kawaii: 32px;
+  --radius-card: 24px;
+  --radius-button: 50px;
+  --shadow-kawaii: 0 12px 40px -8px rgba(255, 141, 161, 0.12);
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.03);
 
-    --muted: #f4f4f5;
-    --muted-foreground: #6b7280;
+  /* Transitions */
+  --transition-soft: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-    --card: #ffffff;
-    --card-foreground: #1a1a1a;
-
-    --border: #e2e8f0;
-    --input: #e2e8f0;
-
-    --radius: 0.3rem;
-    --price-red: #8B1E1E;
-    --soft-pink: #fdf2f2;
-    --off-white: #f6f6f6;
-    --card-radius: 20px;
-    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.05);
-  }
-
-  .dark {
-    --background: #0a0a0a;
-    --foreground: #f8fafc;
-
-    --primary: #f8fafc;
-    --primary-foreground: #0f172a;
-
-    --accent: #66b2b2;
-    --accent-foreground: #ffffff;
-
-    --soft-pink: #2d1b1b;
-    --off-white: #1a1a1a;
-
-    --muted: #1e293b;
-    --muted-foreground: #94a3b8;
-
-    --border: #1e293b;
-    --input: #1e293b;
-  }
-}
-
-.rounded-card {
-  border-radius: var(--card-radius);
-}
-
-.shadow-soft {
-  box-shadow: var(--shadow-soft);
+  /* Legacy compatibility (to avoid breaking things immediately) */
+  --background: var(--bg-soft);
+  --foreground: var(--text-main);
+  --soft-pink: var(--accent-soft);
+  --off-white: var(--accent-cream);
+  --price-red: var(--price-pink);
+  --card-radius: var(--radius-card);
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  background-color: var(--bg-soft);
+  color: var(--text-main);
+  font-family: var(--font-geist-sans), sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
 }
 
 h1,
@@ -77,6 +55,43 @@ h3,
 h4,
 .font-serif {
   font-family: var(--font-cormorant), serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Kawaii Utilities */
+.rounded-kawaii {
+  border-radius: var(--radius-kawaii);
+}
+
+.rounded-card-kawaii {
+  border-radius: var(--radius-card);
+}
+
+.shadow-kawaii {
+  box-shadow: var(--shadow-kawaii);
+}
+
+.transition-soft {
+  transition: var(--transition-soft);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-soft);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-soft);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-vibrant);
 }
 
 @layer utilities {

@@ -14,33 +14,35 @@ export default function ProductGallery({ mainImage, additionalImages, productNam
     const [selectedImage, setSelectedImage] = useState(0);
 
     return (
-        <div className="flex flex-col gap-4">
-            {/* Main Image Display */}
-            <div className="relative aspect-square w-full overflow-hidden rounded-card border border-border bg-[var(--off-white)] shadow-soft">
+        <div className="flex flex-col gap-6">
+            {/* Main Image Display - Soft & Rounded */}
+            <div className="relative aspect-square w-full overflow-hidden rounded-kawaii border border-[var(--border-soft)] bg-white shadow-soft group">
                 <Image
                     src={allImages[selectedImage]}
                     alt={productName}
                     fill
-                    className="object-cover transition-opacity duration-300"
+                    className="object-cover transition-soft duration-500 group-hover:scale-105 p-6"
                     priority
                 />
             </div>
 
-            {/* Thumbnail Gallery */}
+            {/* Thumbnail Gallery - Breathable & Minimal */}
             {additionalImages.length > 0 && (
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap justify-center gap-4">
                     {allImages.map((img, idx) => (
                         <button
                             key={idx}
                             onClick={() => setSelectedImage(idx)}
-                            className={`relative h-20 w-20 overflow-hidden rounded-lg border-2 transition-all ${selectedImage === idx ? "border-[var(--price-red)] ring-2 ring-[var(--price-red)]/10" : "border-transparent hover:border-gray-300"
+                            className={`relative h-20 w-20 overflow-hidden rounded-card-kawaii border-2 transition-soft ${selectedImage === idx
+                                ? "border-[var(--accent-vibrant)] shadow-kawaii scale-110"
+                                : "border-transparent bg-white hover:border-[var(--accent-soft)]"
                                 }`}
                         >
                             <Image
                                 src={img}
                                 alt={`${productName} view ${idx + 1}`}
                                 fill
-                                className="object-cover"
+                                className="object-cover p-2"
                             />
                         </button>
                     ))}
